@@ -78,3 +78,53 @@
       labels.
     * ent.start_char: The starting character index of the entity in the original sentence.
     * ent.end_char: The ending character index of the entity in the original sentence.
+
+**Q3: Scaled Dot-Product Attention**
+
+**1.softmax(x) Function:**
+
+    * Computes the softmax function in a numerically stable way by subtracting the maximum value before exponentiation. This prevents potential overflow issues.
+    * Normalizes the exponentiated values into a probability distribution.
+
+**2.scaled_dot_product_attention(Q, K, V) Function:**
+
+    * Takes the Query (Q), Key (K), and Value (V) matrices as input.
+    * Calculates the dot product of Q and the transpose of K (K.T) to measure the similarity between each query and key.
+    * Scales the result by the square root of the key dimension (d) to prevent the dot products from becoming too large.
+    * Applies the softmax function to the scaled dot products to obtain the attention weights. These weights represent the importance of each key-value pair for 
+      each query.
+    * Computes the weighted sum of the values (V) using the attention weights.
+
+**3.Test Case:**
+
+    * Provides example Q, K, and V matrices to demonstrate the usage of the scaled_dot_product_attention function.
+    * Calls the function with these inputs and prints the resulting attention weights and output.
+
+
+**Q4: Sentiment Analysis using HuggingFace Transformers**
+
+
+**1.Import pipeline:**
+
+    * Imports the pipeline function from the transformers library.
+    * The pipeline function simplifies the process of using pre-trained models for various NLP tasks.
+
+**2.Load sentiment analysis pipeline:**
+
+    * Creates a sentiment analysis pipeline using pipeline("sentiment-analysis").
+    * This downloads and loads a pre-trained model suitable for sentiment analysis (e.g., DistilBERT, RoBERTa).
+    * The loaded pipeline is assigned to sentiment_pipeline.
+
+**3.Input sentence:**
+
+    * Defines the sentence to be analyzed: "Despite the high price, the performance of the new MacBook is outstanding."
+
+**4.Perform sentiment analysis:**
+
+    * Passes the input sentence to sentiment_pipeline to get the sentiment prediction.
+    * The result is a list, and [0] retrieves the prediction for the first (and only) sentence.
+    * The prediction is a dictionary with keys like "label" (e.g., "POSITIVE", "NEGATIVE") and "score" (confidence).
+
+**5.Print the result:**
+
+    * Prints the predicted sentiment label and its confidence score, formatted to four decimal places.
